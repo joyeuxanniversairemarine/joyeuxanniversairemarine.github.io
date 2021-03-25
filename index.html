@@ -1,250 +1,635 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
     <meta name='mobile-web-app-capable' content='yes'>
     <meta name='apple-mobile-web-app-capable' content='yes'>
     <link rel='stylesheet' href='css/style.css'>
     <title>WebXR</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="overlay">
-      <div class="info-area">
-        <div id="info"></div>
-        <button id="xr-button" disabled>XR not found</button>
-      </div>
+        <div class="info-area">
+            <div id="info"></div>
+            <button id="xr-button" disabled>XR not found</button>
+        </div>
+        <div id="loading">
+
+            <div class="progress">
+
+                <div class="loadingio-spinner-spinner-6m1g2f6jdeg">
+                    <div class="ldio-2jxojuyddsq">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <style type="text/css">
+                    @keyframes ldio-2jxojuyddsq {
+                        0% {
+                            opacity: 1
+                        }
+
+                        100% {
+                            opacity: 0
+                        }
+                    }
+
+                    .ldio-2jxojuyddsq div {
+                        left: 93px;
+                        top: 37px;
+                        position: absolute;
+                        animation: ldio-2jxojuyddsq linear 1.25s infinite;
+                        background: #1d3f72;
+                        width: 14px;
+                        height: 34px;
+                        border-radius: 7px / 9.52px;
+                        transform-origin: 7px 63px;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(1) {
+                        transform: rotate(0deg);
+                        animation-delay: -1.1458333333333333s;
+                        background: #1d3f72;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(2) {
+                        transform: rotate(30deg);
+                        animation-delay: -1.0416666666666665s;
+                        background: #5699d2;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(3) {
+                        transform: rotate(60deg);
+                        animation-delay: -0.9374999999999999s;
+                        background: #d8ebf9;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(4) {
+                        transform: rotate(90deg);
+                        animation-delay: -0.8333333333333333s;
+                        background: #71c2cc;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(5) {
+                        transform: rotate(120deg);
+                        animation-delay: -0.7291666666666665s;
+                        background: #4996a2;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(6) {
+                        transform: rotate(150deg);
+                        animation-delay: -0.6249999999999999s;
+                        background: #785471;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(7) {
+                        transform: rotate(180deg);
+                        animation-delay: -0.5208333333333333s;
+                        background: #e8cdc5;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(8) {
+                        transform: rotate(210deg);
+                        animation-delay: -0.41666666666666663s;
+                        background: #eee7d8;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(9) {
+                        transform: rotate(240deg);
+                        animation-delay: -0.31249999999999994s;
+                        background: #1d3f72;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(10) {
+                        transform: rotate(270deg);
+                        animation-delay: -0.20833333333333331s;
+                        background: #5699d2;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(11) {
+                        transform: rotate(300deg);
+                        animation-delay: -0.10416666666666666s;
+                        background: #d8ebf9;
+                    }
+
+                    .ldio-2jxojuyddsq div:nth-child(12) {
+                        transform: rotate(330deg);
+                        animation-delay: 0s;
+                        background: #71c2cc;
+                    }
+
+                    .loadingio-spinner-spinner-6m1g2f6jdeg {
+                        width: 200px;
+                        height: 200px;
+                        display: inline-block;
+                        overflow: hidden;
+                        background: none;
+                    }
+
+                    .ldio-2jxojuyddsq {
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        transform: translateZ(0) scale(1);
+                        backface-visibility: hidden;
+                        transform-origin: 0 0;
+                        /* see note above */
+                    }
+
+                    .ldio-2jxojuyddsq div {
+                        box-sizing: content-box;
+                    }
+
+                    /* generated by https://loading.io/ */
+                </style>
+            </div>
+        </div>
     </div>
-    
+
+
     <script type="module">
 
-      import * as THREE from './js/three.js-r126/build/three.module.js';
-      import { GLTFLoader } from './js/three.js-r126/examples/jsm/loaders/GLTFLoader.js'
+        import * as THREE from './js/three.js-r126/build/three.module.js';
+        import { GLTFLoader } from './js/three.js-r126/examples/jsm/loaders/GLTFLoader.js'
+        import { STLLoader } from './js/three.js-r126/examples/jsm/loaders/STLLoader.js'
+        import { OBJLoader } from './js/three.js-r126/examples/jsm/loaders/OBJLoader.js'
+        //import { AudioLoader } from './js/three.js-r126/examples/jsm/loaders/AudioLoader.js'
 
-      let renderer = null;
-      let scene = null;
-      let camera = null;
-      let model = null;
-      let mixer = null;
-      let action = null;
-      let reticle = null;
-      let lastFrame = Date.now();
+        let renderer = null;
+        let scene = null;
+        let camera = null;
+        let finishLoading = false;
+        let model = null;
+        let yoda = null;
+        //let yodaReticle = null;
 
-      const initScene = (gl, session) => {
+        let topText = null;
+        let bottomText = null;
+        let floor = null;
 
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        let spotLights = [];
+        const NUMBER_SPOTLIGHTS = 6;
+        const SPOTLIGHT_RADIUS = 0.5;
+        let activeSpotlight = 0;
+        let intervalID;
 
-        // load our gltf model
-        var loader = new GLTFLoader();
-        loader.load(
-          'models/wheel.glb',
-          (gltf) => {
-            model = gltf.scene;
-            model.scale.set(0.1, 0.1, 0.1);
-            model.castShadow = true;
-            model.receiveShadow = true;
-            mixer = new THREE.AnimationMixer(model);
-            action = mixer.clipAction(gltf.animations[ 0 ]);
-            action.setLoop(THREE.LoopRepeat, 0);
-          },
-          () => {},
-          (error) => console.error(error)
-        );
+        let mixer = null;
+        let action = null;
+        let reticle = null;
+        let lastFrame = Date.now();
+        let started = false;
+        let sound = false;
 
-        var light = new THREE.PointLight(0xffffff, 2, 100); // soft white light
-        light.position.z = 1;
-        light.position.y = 5;
-        scene.add(light);
+        const loadingElem = document.querySelector('#loading');
+        loadingElem.style.display = 'none';
 
-        // create and configure three.js renderer with XR support
-        renderer = new THREE.WebGLRenderer({
-          antialias: true,
-          alpha: true,
-          autoClear: true,
-          context: gl,
-        });
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.xr.enabled = true;
-        renderer.xr.setReferenceSpaceType('local');
-        renderer.xr.setSession(session);
+        const initScene = (gl, session) => {
 
-        // simple sprite to indicate detected surfaces
-        reticle = new THREE.Mesh(
-          new THREE.RingBufferGeometry(0.15, 0.2, 32).rotateX(-Math.PI / 2),
-          new THREE.MeshPhongMaterial({ color: 0x0fff00 })
-       );
-        // we will update it's matrix later using WebXR hit test pose matrix
-        reticle.matrixAutoUpdate = false;
-        reticle.visible = false;
-        scene.add(reticle);
-      };
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const listener = new THREE.AudioListener();
+            camera.add( listener );
 
-      // button to start XR experience
-      const xrButton = document.getElementById('xr-button');
-      // to display debug information
-      const info = document.getElementById('info');
-      // to control the xr session
-      let xrSession = null;
-      // reference space used within an application https://developer.mozilla.org/en-US/docs/Web/API/XRSession/requestReferenceSpace
-      let xrRefSpace = null;
-      // for hit testing with detected surfaces
-      let xrHitTestSource = null;
+            sound = new THREE.Audio( listener );
 
-      // Canvas OpenGL context used for rendering
-      let gl = null;
+            const audioLoader = new THREE.AudioLoader();
+            audioLoader.load( 'models/muse.m4a', function( buffer ) {
+                sound.setBuffer( buffer );
+                sound.setLoop( true );
+                sound.setVolume( 0.5 );
+            });
 
-      function checkXR() {
-        if (!window.isSecureContext) {
-          document.getElementById("warning").innerText = "WebXR unavailable. Please use secure context";
+            // create and configure three.js renderer with XR support
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                alpha: true,
+                autoClear: true,
+                context: gl,
+            });
+            renderer.sortObjects = false;
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.xr.enabled = true;
+            renderer.shadowMap.enabled = true;
+            renderer.xr.setReferenceSpaceType('local');
+            renderer.xr.setSession(session);
+
+            // load our gltf model
+            /*var loader = new GLTFLoader();
+            loader.load(
+                'models/wheel.glb',
+                (gltf) => {
+                    model = gltf.scene;
+                    model.scale.set(0.1, 0.1, 0.1);
+                    model.castShadow = true;
+                    model.receiveShadow = true;
+                    //mixer = new THREE.AnimationMixer(model);
+                    //action = mixer.clipAction(gltf.animations[ 0 ]);
+                    //action.setLoop(THREE.LoopRepeat, 0);
+                },
+                () => { },
+                (error) => console.error(error)
+            );*/
+
+            const loadManager = new THREE.LoadingManager();
+            const loader = new OBJLoader(loadManager);
+            loader.load(
+                'models/Yoda_Sleep.obj',
+                function (obj) {
+                    obj.scale.set(0.01, 0.01, 0.01);
+                    obj.castShadow = true;
+                    obj.receiveShadow = true;
+                    yoda = obj;
+                    //yodaReticle = obj;
+                    //yodaReticle.scale.set(5, 5, 5);
+                },
+                (xhr) => {
+                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                },
+                (error) => console.error(error)
+            );
+
+
+            loadManager.onLoad = () => {
+                loadingElem.style.display = 'none';
+                finishLoading = true;
+                //yodaReticle.visible = false;
+                //scene.add(yodaReticle);
+            }
+
+            let ambientLight = new THREE.AmbientLight(0x666666);
+            scene.add(ambientLight);
+
+            createSpotLights();
+
+            let floorGeometry = new THREE.PlaneGeometry(4, 4);
+            let floorMaterial = new THREE.ShadowMaterial();
+            //let floorMaterial = new THREE.MeshPhongMaterial({ color: 0x0fff00 });
+            floorMaterial.opacity = 0.3;
+            floor = new THREE.Mesh(floorGeometry, floorMaterial);
+            floor.depthWrite = true;
+            floor.rotation.x = -Math.PI / 2;
+            floor.receiveShadow = true;
+
+
+
+            // simple sprite to indicate detected surfaces
+            reticle = new THREE.Mesh(
+                new THREE.RingBufferGeometry(0.15, 0.2, 32).rotateX(-Math.PI / 2),
+                new THREE.MeshPhongMaterial({ color: 0x0fff00 })
+            );
+            // we will update it's matrix later using WebXR hit test pose matrix
+            reticle.matrixAutoUpdate = false;
+            reticle.visible = false;
+            scene.add(reticle);
+
+            
+
+            const fontLoader = new THREE.FontLoader();
+            fontLoader.load('./fonts/helvetiker_regular.typeface.json', (font) => {
+
+                const geoTopText = new THREE.TextGeometry('JOYEUX ANNIVERSAIRE', {
+                    font: font,
+                    size: 3,
+                    height: 0.4,
+                    curveSegments: 12,
+                    bevelEnabled: true,
+                    bevelThickness: 0.15,
+                    bevelSize: 0.3,
+                    bevelSegments: 5,
+                });
+
+                const matText = new THREE.MeshPhongMaterial({ color: 0xffffff });
+
+                topText = new THREE.Mesh(geoTopText, matText);
+                topText.scale.set(0.0212, 0.0212, 0.0212);
+                topText.castShadow = true;
+                topText.receiveShadow = true;
+
+                const geoBottomText = new THREE.TextGeometry('MARINE', {
+                    font: font,
+                    size: 8,
+                    height: 0.4,
+                    curveSegments: 12,
+                    bevelEnabled: true,
+                    bevelThickness: 0.15,
+                    bevelSize: 0.3,
+                    bevelSegments: 5,
+                });
+
+                bottomText = new THREE.Mesh(geoBottomText, matText);
+                bottomText.scale.set(0.025, 0.025, 0.025);
+                bottomText.castShadow = true;
+                bottomText.receiveShadow = true;
+            });
+
+
+        };
+
+        // button to start XR experience
+        const xrButton = document.getElementById('xr-button');
+        // to display debug information
+        const info = document.getElementById('info');
+        // to control the xr session
+        let xrSession = null;
+        // reference space used within an application https://developer.mozilla.org/en-US/docs/Web/API/XRSession/requestReferenceSpace
+        let xrRefSpace = null;
+        // for hit testing with detected surfaces
+        let xrHitTestSource = null;
+
+        // Canvas OpenGL context used for rendering
+        let gl = null;
+
+        function checkXR() {
+            if (!window.isSecureContext) {
+                document.getElementById("warning").innerText = "WebXR unavailable. Please use secure context";
+            }
+            if (navigator.xr) {
+                navigator.xr.addEventListener('devicechange', checkSupportedState);
+                checkSupportedState();
+            } else {
+                document.getElementById("warning").innerText = "WebXR unavailable for this browser";
+            }
         }
-        if (navigator.xr) {
-          navigator.xr.addEventListener('devicechange', checkSupportedState);
-          checkSupportedState();
-        } else {
-          document.getElementById("warning").innerText = "WebXR unavailable for this browser"; 
-        }
-      }
 
-      function checkSupportedState() {
-        navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
-          if (supported) {
+        function checkSupportedState() {
+            navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
+                if (supported) {
+                    xrButton.innerHTML = 'Enter AR';
+                    xrButton.addEventListener('click', onButtonClicked);
+                } else {
+                    xrButton.innerHTML = 'AR not found';
+                }
+                xrButton.disabled = !supported;
+            });
+        }
+
+        function onButtonClicked() {
+            if (!xrSession) {
+                navigator.xr.requestSession('immersive-ar', {
+                    optionalFeatures: ['dom-overlay'],
+                    requiredFeatures: ['local', 'hit-test'],
+                    domOverlay: { root: document.getElementById('overlay') }
+                }).then(onSessionStarted, onRequestSessionError);
+            } else {
+                xrSession.end();
+            }
+        }
+
+        function onSessionStarted(session) {
+            loadingElem.style.display = 'flex';
+            xrSession = session;
+            xrButton.innerHTML = 'Exit AR';
+
+            // create a canvas element and WebGL context for rendering
+            session.addEventListener('end', onSessionEnded);
+            let canvas = document.createElement('canvas');
+            gl = canvas.getContext('webgl', { xrCompatible: true });
+            session.updateRenderState({ baseLayer: new XRWebGLLayer(session, gl) });
+
+            // here we ask for viewer reference space, since we will be casting a ray
+            // from a viewer towards a detected surface. The results of ray and surface intersection
+            // will be obtained via xrHitTestSource variable
+            session.requestReferenceSpace('viewer').then((refSpace) => {
+                session.requestHitTestSource({ space: refSpace }).then((hitTestSource) => {
+                    xrHitTestSource = hitTestSource;
+                });
+            });
+
+            session.requestReferenceSpace('local').then((refSpace) => {
+                xrRefSpace = refSpace;
+                session.requestAnimationFrame(onXRFrame);
+            });
+
+            document.getElementById("overlay").addEventListener('click', placeObject);
+
+            // initialize three.js scene
+            initScene(gl, session);
+        }
+
+        function onRequestSessionError(ex) {
+            info.innerHTML = "Failed to start AR session.";
+            console.error(ex.message);
+        }
+
+        function onSessionEnded(event) {
+            xrSession = null;
             xrButton.innerHTML = 'Enter AR';
-            xrButton.addEventListener('click', onButtonClicked);
-          } else {
-            xrButton.innerHTML = 'AR not found';
-          }
-          xrButton.disabled = !supported;
-        });
-      }
-
-      function onButtonClicked() {
-        if (!xrSession) {
-            navigator.xr.requestSession('immersive-ar', {
-                optionalFeatures: ['dom-overlay'],
-                requiredFeatures: ['local', 'hit-test'],
-                domOverlay: {root: document.getElementById('overlay')}
-            }).then(onSessionStarted, onRequestSessionError);
-        } else {
-          xrSession.end();
-        }
-      }
-
-      function onSessionStarted(session) {
-        xrSession = session;
-        xrButton.innerHTML = 'Exit AR';
-
-        // Show which type of DOM Overlay got enabled (if any)
-        if (session.domOverlayState) {
-          info.innerHTML = 'DOM Overlay type: ' + session.domOverlayState.type;
+            info.innerHTML = '';
+            gl = null;
+            if (xrHitTestSource) xrHitTestSource.cancel();
+            xrHitTestSource = null;
         }
 
-        // create a canvas element and WebGL context for rendering
-        session.addEventListener('end', onSessionEnded);
-        let canvas = document.createElement('canvas');
-        gl = canvas.getContext('webgl', { xrCompatible: true });
-        session.updateRenderState({ baseLayer: new XRWebGLLayer(session, gl) });
+        function placeObject() {
 
-        // here we ask for viewer reference space, since we will be casting a ray
-        // from a viewer towards a detected surface. The results of ray and surface intersection
-        // will be obtained via xrHitTestSource variable
-        session.requestReferenceSpace('viewer').then((refSpace) => {
-          session.requestHitTestSource({ space: refSpace }).then((hitTestSource) => {
-            xrHitTestSource = hitTestSource;
-          });
-        });
+            if (reticle.visible) {
 
-        session.requestReferenceSpace('local').then((refSpace) => {
-          xrRefSpace = refSpace;
-          session.requestAnimationFrame(onXRFrame);
-        });
 
-        document.getElementById("overlay").addEventListener('click', placeObject);
+                started = true;
+                reticle.visible = false;
+                //yodaReticle.visible = false;
+                xrHitTestSource.cancel();
+                xrHitTestSource = null;
+                // we'll be placing our object right where the reticle was
+                const pos = reticle.getWorldPosition();
+                scene.remove(reticle);
+                //scene.remove(yodaReticle);
 
-        // initialize three.js scene
-        initScene(gl, session);
-      }
+                sound.play();
 
-      function onRequestSessionError(ex) {
-        info.innerHTML = "Failed to start AR session.";
-        console.error(ex.message);
-      }
 
-      function onSessionEnded(event) {
-        xrSession = null;
-        xrButton.innerHTML = 'Enter AR';
-        info.innerHTML = '';
-        gl = null;
-        if (xrHitTestSource) xrHitTestSource.cancel();
-        xrHitTestSource = null;
-      }
+                var boxYoda = new THREE.Box3().setFromObject(yoda);
+                yoda.position.set(pos.x - boxYoda.getSize().x / 2, pos.y, pos.z - boxYoda.getSize().z - 0.2);
+                yoda.children[0].material.color.setHex(0x32ad53);
+                yoda.children[0].material.needsUpdate = true;
+                scene.add(yoda);
 
-      function placeObject() {
-        if (reticle.visible && model) {
-          reticle.visible = false;
-          xrHitTestSource.cancel();
-          xrHitTestSource = null;
-          // we'll be placing our object right where the reticle was
-          const pos = reticle.getWorldPosition();
-          scene.remove(reticle);
-          model.position.set(pos.x, pos.y, pos.z);
-          scene.add(model);
+                floor.position.set(pos.x, pos.y, pos.z);
+                scene.add(floor);
 
-          // start object animation right away
-          toggleAnimation();
-          // instead of placing an object we will just toggle animation state
-          document.getElementById("overlay").removeEventListener('click', placeObject);
-          document.getElementById("overlay").addEventListener('click', toggleAnimation);
-        }
-      }
+                var boxTop = new THREE.Box3().setFromObject(topText);
+                var boxBottom = new THREE.Box3().setFromObject(bottomText);
 
-      function toggleAnimation() {
-        if (action.isRunning()) {
-            action.stop();
-            action.reset();
-          } else {
-            action.play();
-          }
-      }
+                topText.position.set(pos.x - boxTop.getSize().x / 2, pos.y + boxBottom.getSize().y + 0.005, pos.z);
+                scene.add(topText);
 
-      // Utility function to update animated objects
-      function updateAnimation() {
-        let dt = (Date.now() - lastFrame) / 1000;
-        lastFrame = Date.now();
-        if (mixer) {
-          mixer.update(dt);
-        }  
-      }
+                bottomText.position.set(pos.x - boxBottom.getSize().x / 2, pos.y, pos.z);
+                scene.add(bottomText);
 
-      function onXRFrame(t, frame) {
-        let session = frame.session;
-        session.requestAnimationFrame(onXRFrame);
+                /*const axesHelper = new THREE.AxesHelper(1);
+                axesHelper.material.depthTest = false;
+                axesHelper.renderOrder = 1;
+                cube.add(axesHelper);*/
 
-        if (xrHitTestSource) {
-          // obtain hit test results by casting a ray from the center of device screen
-          // into AR view. Results indicate that ray intersected with one or more detected surfaces
-          const hitTestResults = frame.getHitTestResults(xrHitTestSource);
-          if (hitTestResults.length) {
-            // obtain a local pose at the intersection point
-            const pose = hitTestResults[0].getPose(xrRefSpace);
-            // place a reticle at the intersection point
-            reticle.matrix.fromArray(pose.transform.matrix);
-            reticle.visible = true;
-          }
-        } else {  // do not show a reticle if no surfaces are intersected
-          reticle.visible = false;
+
+                placeSpotLights(pos);
+                // start object animation right away
+                //toggleAnimation();
+                // instead of placing an object we will just toggle animation state
+                document.getElementById("overlay").removeEventListener('click', placeObject);
+                //document.getElementById("overlay").addEventListener('click', toggleAnimation);
+            }
         }
 
-        // update object animation
-        updateAnimation();
-        // bind our gl context that was created with WebXR to threejs renderer
-        gl.bindFramebuffer(gl.FRAMEBUFFER, session.renderState.baseLayer.framebuffer);
-        // render the scene
-        renderer.render(scene, camera);
-      }
+        function toggleAnimation() {
+            if (action.isRunning()) {
+                action.stop();
+                action.reset();
+            } else {
+                action.play();
+            }
+        }
 
-      checkXR();
+        // Utility function to update animated objects
+        function updateAnimation() {
+            let dt = (Date.now() - lastFrame) / 1000;
+            lastFrame = Date.now();
+            if (mixer) {
+                mixer.update(dt);
+            }
+        }
+
+        let last = 0;
+        function onXRFrame(t, frame) {
+
+
+            if (started && (!last || t - last >= 500)) {
+                last = t;
+                activateSpotLight(activeSpotlight);
+            }
+
+            let session = frame.session;
+            session.requestAnimationFrame(onXRFrame);
+
+            if (xrHitTestSource) {
+                // obtain hit test results by casting a ray from the center of device screen
+                // into AR view. Results indicate that ray intersected with one or more detected surfaces
+                const hitTestResults = frame.getHitTestResults(xrHitTestSource);
+                if (hitTestResults.length) {
+                    // obtain a local pose at the intersection point
+                    const pose = hitTestResults[0].getPose(xrRefSpace);
+                    // place a reticle at the intersection point
+                    
+                    
+                    reticle.matrix.fromArray(pose.transform.matrix);
+                    reticle.visible = true;
+
+                    if(finishLoading){
+                        //yodaReticle.matrix.copyPosition(reticle.matrix);
+                        //yodaReticle.visible = true;
+                        //console.log(yodaReticle);
+                    }
+                }
+            } else {  // do not show a reticle if no surfaces are intersected
+                reticle.visible = false;
+                if(finishLoading){
+                    //yodaReticle.visible = false;
+                }
+                
+            }
+
+            // update object animation
+            //updateAnimation();
+            // bind our gl context that was created with WebXR to threejs renderer
+            gl.bindFramebuffer(gl.FRAMEBUFFER, session.renderState.baseLayer.framebuffer);
+            // render the scene
+
+            renderer.render(scene, camera);
+        }
+
+        function createSpotLights() {
+            for (let i = 0; i < NUMBER_SPOTLIGHTS; i++) {
+
+                let light = new THREE.SpotLight(0xffffff, 1);
+                light.castShadow = false;
+                light.intensity = 0;
+                light.shadow.camera.near = 0.001;
+                let color = new THREE.Color(0xffffff);
+                color.setHex(Math.random() * 0xffffff);
+                light.color = color;
+
+                let geoCone = new THREE.ConeGeometry(6, 20, 16);
+                let material = new THREE.MeshBasicMaterial({
+                    color: color,
+                    opacity: 0.2,
+                    transparent: true
+                });
+
+                let cone = new THREE.Mesh(geoCone, material);
+                cone.visible = false;
+
+                light.cone = cone;
+
+                light.add(cone);
+
+                spotLights.push(light);
+            }
+        }
+
+        function placeSpotLights(pos) {
+
+            console.log(spotLights);
+
+            let angleBetween = (2 * Math.PI) / NUMBER_SPOTLIGHTS;
+            let angle = 0;
+
+            spotLights.forEach(function (light) {
+                let x = pos.x + SPOTLIGHT_RADIUS * Math.cos(angle);
+                let z = pos.z + SPOTLIGHT_RADIUS * Math.sin(angle);
+
+                light.position.set(x, pos.y + 0.7, z);
+                light.target.position.set(pos.x, pos.y, pos.z);
+                light.cone.lookAt(pos.x, pos.y, pos.z);
+                light.cone.rotateOnAxis(new THREE.Vector3(1, 0, 0), -Math.PI / 2);
+                light.scale.set(0.1, 0.1, 0.1);
+                light.renderOrder = 1;
+                scene.add(light);
+                scene.add(light.target);
+                /*let helper = new THREE.SpotLightHelper(light);
+                helper.scale.set(0.1, 0.1, 0.1);
+                scene.add(helper);*/
+
+                angle = angle + angleBetween;
+            });
+        }
+
+        function activateSpotLight(index) {
+
+            if (spotLights[index - 1]) {
+                spotLights[index - 1].intensity = 0;
+                spotLights[index - 1].castShadow = false;
+                spotLights[index - 1].cone.visible = false;
+            } else {
+                spotLights[spotLights.length - 1].intensity = 0;
+                spotLights[spotLights.length - 1].castShadow = false;
+                spotLights[spotLights.length - 1].cone.visible = false;
+            }
+
+            spotLights[index].intensity = 1;
+            spotLights[index].castShadow = true;
+            spotLights[index].cone.visible = true;
+            activeSpotlight++;
+            if (activeSpotlight == NUMBER_SPOTLIGHTS) {
+                activeSpotlight = 0;
+            }
+        }
+
+        checkXR();
     </script>
-  </body>
+</body>
+
 </html>
