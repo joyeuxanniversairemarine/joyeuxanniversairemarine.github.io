@@ -257,7 +257,7 @@
                     //yodaReticle.scale.set(5, 5, 5);
                 },
                 (xhr) => {
-                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                    //console.log((xhr.loaded / xhr.total * 100) + '% loaded');
                 },
                 (error) => console.error(error)
             );
@@ -426,6 +426,7 @@
         }
 
         function onSessionEnded(event) {
+            sound.stop();
             xrSession = null;
             xrButton.innerHTML = 'Enter AR';
             info.innerHTML = '';
@@ -436,7 +437,7 @@
 
         function placeObject() {
 
-            if (reticle.visible) {
+            if (reticle.visible && finishLoading) {
 
 
                 started = true;
@@ -528,11 +529,11 @@
                     reticle.matrix.fromArray(pose.transform.matrix);
                     reticle.visible = true;
 
-                    if(finishLoading){
+                    /*if(finishLoading){
                         //yodaReticle.matrix.copyPosition(reticle.matrix);
                         //yodaReticle.visible = true;
                         //console.log(yodaReticle);
-                    }
+                    }*/
                 }
             } else {  // do not show a reticle if no surfaces are intersected
                 reticle.visible = false;
@@ -582,7 +583,7 @@
 
         function placeSpotLights(pos) {
 
-            console.log(spotLights);
+            //console.log(spotLights);
 
             let angleBetween = (2 * Math.PI) / NUMBER_SPOTLIGHTS;
             let angle = 0;
